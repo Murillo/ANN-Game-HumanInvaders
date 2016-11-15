@@ -49,3 +49,9 @@
 /processorParam:TextureFormat=Color
 /build:background.jpg
 
+#begin points.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:TextureFormat=Compressed
+/build:points.spritefont
+

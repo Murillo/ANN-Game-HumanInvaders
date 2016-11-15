@@ -4,7 +4,9 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/msgrubler-pc/documents/visual studio 2015/Projects/ANN.HumanInvaders/ANN.HumanInvaders/Content/database.png</File>
-    <File>C:/Users/msgrubler-pc/documents/visual studio 2015/Projects/ANN.HumanInvaders/ANN.HumanInvaders/Content/hospital.png</File>
+    <File>C:/Users/msgrubler-pc/Documents/GitHub/ANN-HumanInvaders/ANN.HumanInvaders/Content/spacecraft-alien-min.png</File>
+    <File>C:/Users/msgrubler-pc/Documents/GitHub/ANN-HumanInvaders/ANN.HumanInvaders/Content/spacecraft-human-min.png</File>
+    <File>C:/Users/msgrubler-pc/Documents/GitHub/ANN-HumanInvaders/ANN.HumanInvaders/Content/background.jpg</File>
+    <File>C:/Users/msgrubler-pc/Documents/GitHub/ANN-HumanInvaders/ANN.HumanInvaders/Content/points.spritefont</File>
   </SourceFiles>
 </SourceFileCollection>

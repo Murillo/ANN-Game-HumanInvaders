@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/msgrubler-pc/documents/visual studio 2015/Projects/ANN.HumanInvaders/ANN.HumanInvaders/Content/database.png</SourceFile>
-  <SourceTime>2016-06-02T21:32:54.1003677-03:00</SourceTime>
-  <DestFile>C:/Users/msgrubler-pc/documents/visual studio 2015/Projects/ANN.HumanInvaders/ANN.HumanInvaders/Content/bin/Windows/database.xnb</DestFile>
-  <DestTime>2016-11-12T11:58:44.5497604-02:00</DestTime>
+  <SourceFile>C:/Users/msgrubler-pc/Documents/GitHub/ANN-HumanInvaders/ANN.HumanInvaders/Content/database.png</SourceFile>
+  <SourceTime>2016-11-12T14:31:46.5134972-02:00</SourceTime>
+  <DestFile>C:/Users/msgrubler-pc/Documents/GitHub/ANN-HumanInvaders/ANN.HumanInvaders/Content/bin/Windows/database.xnb</DestFile>
+  <DestTime>2016-11-15T00:02:29.7304277-02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2016-03-30T03:36:08-03:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -12,9 +12,10 @@ namespace ANN.HumanInvaders
         SpriteBatch spriteBatch;
         MultilayerPerceptron mlp;
         Texture2D background, image1, image2;
-        Vector2 vector1, vector2;
+        SpriteFont points;
+        Vector2 vector1, vector2, vectorBackground, vectorPoints, vectorTitle;
         float speed = 4;
-        string[] spaces = new string[] { "spacecraft-alien-min", "spacecraft-human-min.png" };
+        int totalPoints = 0;
 
         public Main()
         {
@@ -44,10 +45,16 @@ namespace ANN.HumanInvaders
             Random r = new Random();
 
             background = Content.Load<Texture2D>("background");
+            vectorBackground = new Vector2(0, 0);
+
+            points = Content.Load<SpriteFont>(@"points");
+            vectorTitle = new Vector2(10, 10);
+            vectorPoints = new Vector2((GraphicsDevice.Viewport.Width - 125), 10);
+
             image1 = Content.Load<Texture2D>("spacecraft-alien-min");
-            image2 = Content.Load<Texture2D>("spacecraft-human-min");
-            
             vector1 = new Vector2(10, 240);
+
+            image2 = Content.Load<Texture2D>("spacecraft-human-min");
             vector2 = new Vector2(r.Next(400, 600), r.Next(0, 400));
 
             // Input = Position.X Player, Position.Y Player, Position.X Enemy, Position.Y Enemy
@@ -112,10 +119,13 @@ namespace ANN.HumanInvaders
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
             spriteBatch.Begin();
-            spriteBatch.Draw(background, new Vector2(0,0), Color.White);
+            spriteBatch.Draw(background, vectorBackground, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
             spriteBatch.Draw(image1, vector1, Color.White);
             spriteBatch.Draw(image2, vector2, Color.White);
+            spriteBatch.DrawString(points, "Human Invaders", vectorTitle, Color.White);
+            spriteBatch.DrawString(points, "Points: " + totalPoints, vectorPoints, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
