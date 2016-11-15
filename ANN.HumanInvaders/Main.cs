@@ -11,9 +11,10 @@ namespace ANN.HumanInvaders
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         MultilayerPerceptron mlp;
-        Texture2D image1, image2;
+        Texture2D background, image1, image2;
         Vector2 vector1, vector2;
         float speed = 4;
+        string[] spaces = new string[] { "spacecraft-alien-min", "spacecraft-human-min.png" };
 
         public Main()
         {
@@ -40,10 +41,12 @@ namespace ANN.HumanInvaders
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            image1 = Content.Load<Texture2D>("database");
-            image2 = Content.Load<Texture2D>("hospital");
-
             Random r = new Random();
+
+            background = Content.Load<Texture2D>("background");
+            image1 = Content.Load<Texture2D>("spacecraft-alien-min");
+            image2 = Content.Load<Texture2D>("spacecraft-human-min");
+            
             vector1 = new Vector2(10, 240);
             vector2 = new Vector2(r.Next(400, 600), r.Next(0, 400));
 
@@ -110,8 +113,9 @@ namespace ANN.HumanInvaders
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            spriteBatch.Draw(image1, vector1, new Rectangle(0,0,50,50), Color.White);
-            spriteBatch.Draw(image2, vector2, new Rectangle(0, 0, 50, 50), Color.White);
+            spriteBatch.Draw(background, new Vector2(0,0), Color.White);
+            spriteBatch.Draw(image1, vector1, Color.White);
+            spriteBatch.Draw(image2, vector2, Color.White);
             spriteBatch.End();
 
             base.Draw(gameTime);
