@@ -16,9 +16,10 @@ namespace ANN.HumanInvaders
         Vector2 vector1, vector2, vectorBackground, vectorPoints, vectorTitle;
         Rectangle space_alien, space_human;
         float speed = 4;
-        float speedEnemy = 2;
+        float speedEnemy = 5;
         int totalPoints = 0;
         bool trainGame, startGame = false;
+        string title = "Human Invaders";
 
         public Main()
         {
@@ -55,12 +56,12 @@ namespace ANN.HumanInvaders
             vectorPoints = new Vector2((GraphicsDevice.Viewport.Width - 125), 10);
 
             image1 = Content.Load<Texture2D>("spacecraft-alien-min");
-            vector1 = new Vector2(10, 240);
+            vector1 = new Vector2(10, 175);
             space_alien = new Rectangle(0, 0, 150, 151);
 
             image2 = Content.Load<Texture2D>("spacecraft-human-min");
-            //vector2 = new Vector2(r.Next(400, 600), r.Next(0, 400));
-            vector2 = new Vector2(600, 300);
+            vector2 = new Vector2(600, r.Next(0, 500));
+            //vector2 = new Vector2(600, 200);
             space_human = new Rectangle(0, 0, 150, 90);
 
             // Input = Position.X Player, Position.Y Player, Position.X Enemy, Position.Y Enemy
@@ -91,6 +92,7 @@ namespace ANN.HumanInvaders
 
             if (trainGame)
             {
+                title = "Human Invaders - Train";
                 if (Keyboard.GetState().IsKeyDown(Keys.Up))
                 {
                     vector1.Y -= speed;
@@ -123,40 +125,52 @@ namespace ANN.HumanInvaders
                 {
                     totalPoints += 1;
                     Random r = new Random();
-                    //vector2 = new Vector2(800, r.Next(0, 400));
-                    vector2 = new Vector2(600, 300);
-                    trainGame = totalPoints < 1;
-                    if (totalPoints >= 1)
+                    vector2 = new Vector2(600, r.Next(0, 400));
+                    //vector2 = new Vector2(600, 200);
+                    //vector1 = new Vector2(10, 175);
+
+                    if (totalPoints >= 3)
                     {
                         trainGame = false;
                         startGame = true;
-                        vector1 = new Vector2(10, 240);
+                        totalPoints = 0;
+                        vector1 = new Vector2(10, 175);
                     }
                 }
             }
 
             if (startGame)
             {
+                title = "Human Invaders - Run";
                 double[] inputs = new double[] { vector1.X, vector1.Y, vector2.X, vector2.Y };
                 double result = mlp.Run(inputs)[0];
-                System.Diagnostics.Debug.WriteLine(result);
+                System.Diagnostics.Debug.WriteLine("Run: " + result);
 
                 if (vector2.X >= 0)
-                    vector2.X -= 2;
+                    vector2.X -= speedEnemy;
                 else
                 {
                     totalPoints += 1;
                     Random r = new Random();
-                    vector2 = new Vector2(r.Next(400, 600), r.Next(0, 400));
+                    vector2 = new Vector2(600, r.Next(0, 400));
+                    //vector2 = new Vector2(600, 200);
                 }
 
                 if (result >= 0 && result <= 0.4)
-                    vector1.Y -= speed;
-                else if (result >= 6 && result <= 1)
-                    vector1.Y += speed;
+                {
+                    if (vector1.Y >= 0)
+                    {
+                        vector1.Y -= speed;
+                    }
+                }
+                else if (result >= 0.6 && result <= 1)
+                {
+                    if (vector1.Y <= (GraphicsDevice.Viewport.Height - 150))
+                    {
+                        vector1.Y += speed;
+                    }
+                }
             }
-            
-            
 
             base.Update(gameTime);
         }
@@ -173,7 +187,7 @@ namespace ANN.HumanInvaders
             spriteBatch.Draw(background, vectorBackground, new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height), Color.White);
             spriteBatch.Draw(image1, vector1, space_alien, Color.White);
             spriteBatch.Draw(image2, vector2, space_human, Color.White);
-            spriteBatch.DrawString(points, "Human Invaders", vectorTitle, Color.White);
+            spriteBatch.DrawString(points, title, vectorTitle, Color.White);
             spriteBatch.DrawString(points, "Points: " + totalPoints, vectorPoints, Color.White);
             spriteBatch.End();
 
